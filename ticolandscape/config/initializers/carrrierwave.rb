@@ -13,4 +13,18 @@ Carrierwave.configure do |config|
   else
     config.storage = :fog
   end
-end
+  config.cache_dir = "#{Rails.root}/tmp/uploads"
+  config.fog_directory = ENV['S3_BUCKET']
+end #carrierwave
+
+module CarrierWave
+  module MiniMagick
+    def quality(percentage)
+      manipulate! do |img|
+        img.quality(percentage.to_s)
+        img = yield(img) if block_given?
+        img
+      end
+    end
+  end #MiniMagick module
+end #CarrierWave module
