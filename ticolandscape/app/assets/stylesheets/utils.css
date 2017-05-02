@@ -1,5 +1,14 @@
+body {
+	background-color: #CCC;
+}
+.white-bg {
+	background-color: #FFF;
+	margin-top: 15px ;
+	margin-bottom: 15px ;
+}
 .avatar_name {
 	margin-top: -40px;
+	padding-left: 10px;
 	color: black;
 	text-shadow: 2px 2px 5px gray;
 	font-size: 24px;
@@ -10,10 +19,24 @@
 	box-shadow: 2px 3px 5px gray !important;
 }
 .green-icon {
-	color: green;
+	color: #009688;
 }
 .green-icon label {
 	color: black;
 }
 
+.btn-square {
+    background-color: #009688;
+    border-color: #009288;
+    color: #fff;
+}
+.full-image {
+	min-width: 100%;
+}
+div.no-padding {
+	padding: 0 ;
+}
 
+div.recover-padding {
+	padding:0 15px !important;
+}
