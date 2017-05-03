@@ -26,15 +26,16 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+gem 'authlogic', '3.6.0'
 gem 'therubyracer', platforms: :ruby
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
+
 #AWS
-gem 'aws-sdk-v1'
+#gem 'aws-sdk-v1'
 gem 'carrierwave'
-gem 'fog'
-gem 'figaro'
+#gem 'fog'
+#gem 'figaro'
 gem 'mini_magick'
 
 # Use Capistrano for deployment

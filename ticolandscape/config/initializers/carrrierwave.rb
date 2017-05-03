@@ -1,3 +1,4 @@
+=begin  
 Carrierwave.configure do |config|
   config.fog_credentials = {
     provider:                  'AWS',
@@ -28,3 +29,4 @@ module CarrierWave
     end
   end #MiniMagick module
 end #CarrierWave module
+=end  
