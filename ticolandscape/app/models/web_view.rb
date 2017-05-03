@@ -1,0 +1,2 @@
+class WebView < ApplicationRecord
+end

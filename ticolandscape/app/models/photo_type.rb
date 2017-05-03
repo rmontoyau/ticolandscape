@@ -1,0 +1,2 @@
+class PhotoType < ApplicationRecord
+end
