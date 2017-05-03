@@ -1,13 +1,22 @@
 Rails.application.routes.draw do
 
 
-  root 'home#index'
-
-	resources :home do
+  	resources :home do
 		collection do
 			get :about
 			get :contactus
 		end
+	end
+
+	resources :users do
+		collection do
+			get :index
+			get :new
+			post :create
+			get :edit
+			post :update
+			get :delete
+		end# collection
 	end
 
 	namespace :admin do

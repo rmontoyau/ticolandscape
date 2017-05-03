@@ -1,0 +1,5 @@
+<% simple_form_for @user, :html => {:id => 'user_form'} do |f|%>
+	<%= f.input :email, :input_html => {class: "form_control"}, :placeholder => "example@email.com"%>
+	<%= f.input :password, :input_html => {class: 'form-control'}, :placeholder => "****", :maxlength => 50 %>
+	<%= f.input :password_confirmation, :input_html => {class: 'form-control'}, :placeholder => "****", :maxlength => 50 %>
+<%end%>

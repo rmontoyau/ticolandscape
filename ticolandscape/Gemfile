@@ -38,6 +38,7 @@ gem 'carrierwave'
 #gem 'figaro'
 gem 'mini_magick'
 
+gem 'simple_form'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
