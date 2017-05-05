@@ -1,5 +1,60 @@
-<% simple_form_for @user, :html => {:id => 'user_form'} do |f|%>
-	<%= f.input :email, :input_html => {class: "form_control"}, :placeholder => "example@email.com"%>
-	<%= f.input :password, :input_html => {class: 'form-control'}, :placeholder => "****", :maxlength => 50 %>
-	<%= f.input :password_confirmation, :input_html => {class: 'form-control'}, :placeholder => "****", :maxlength => 50 %>
-<%end%>
+	<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<%= simple_form_for @user, :html => {:id => 'form-inline'} do |f|%>
+			<div class="form-group">
+		 		<div class="input-group">
+			      <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"/></div>
+					<%= f.input :email, :label => false, :input_html => {class: "form-control"}, :placeholder => "#{(t 'field.email')} example@email.com"%>
+				</div>
+			</div>
+			<div class="form-group">
+		 		<div class="input-group">
+			      <div class="input-group-addon"><span class="glyphicon glyphicon-lock"/></div>
+					<%= f.input :password, :label => false, :input_html => {class: 'form-control'},:error_html => {:id => "password_error"}, :placeholder => (t 'field.password'), :maxlength => 50 %>
+				</div>				
+			</div>		
+			
+			<div class="form-group">
+		 		<div class="input-group">
+			      <div class="input-group-addon"><span class="glyphicon glyphicon-lock"/></div>
+					<%= f.input :password_confirmation, :label => false, :input_html => {class: 'form-control'}, :placeholder => (t 'field.confirm_password'), :maxlength => 50 %>
+				</div>
+			</div>
+			<hr/>
+			<%= f.fields_for :profile do |builder| %>
+				<div class="form-group">
+			 		<div class="input-group">
+				      <div class="input-group-addon"><span class="glyphicon glyphicon-user"/></div>
+						<%= builder.input :name, :label => false, :input_html => {class: "form-control"}, :placeholder => "#{(t 'field.name')} "%>
+					</div>
+				</div>
+				<div class="form-group">
+			 		<div class="input-group">
+				      <div class="input-group-addon"><span class="glyphicon glyphicon-user"/></div>
+						<%= builder.input :last_name, :label => false, :input_html => {class: "form-control"}, :placeholder => "#{(t 'field.last_name')} "%>
+					</div>
+				</div>
+				<div class="form-group">
+			 		<div class="input-group">
+				      <div class="input-group-addon"><span class="glyphicon glyphicon-calendar"/></div>
+						<% builder.input :last_name, :label => false, :input_html => {class: "form-control"}, :placeholder => "#{(t 'field.dob')} "%>
+					</div>
+				</div>
+				<div class="btn-group" role="group" aria-label="...">
+				  <button type="button" class="btn btn-default"><%= t 'field.male'%></button>
+				  <button type="button" class="btn btn-default"><%= t 'field.female'%></button>
+				</div><br/>
+
+			<% end %>
+			
+
+			<br/><br/><br/>
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<input type="submit" class="btn btn-default" value="<%= t 'button.cancel'%>">
+					<input type="submit" class="btn btn-primary" value="<%= t 'button.acept'%>">
+				</div>
+			</div>
+		<%end%>
+	</div>
+</div>

@@ -1,0 +1,16 @@
+es:
+  field:
+    'email': Correo electronico
+    'password': Contraseña
+    'confirm_password': Confirmar su contraseña
+    'name': Nombre
+    'last_name': Apellido
+    'gender': Genero
+    'male': Masculino
+    'female': Femenino
+    'dob': Fecha de nacimiento
+  button:
+    'acept': Aceptar
+    'cancel': Cancelar
+    'reset': Reset
+ 

@@ -40,3 +40,10 @@ div.no-padding {
 div.recover-padding {
 	padding:0 15px !important;
 }
+span.error {
+	color:red;
+	font-size: 12px;
+}
+.field_with_errors{
+	border-color: red;
+}

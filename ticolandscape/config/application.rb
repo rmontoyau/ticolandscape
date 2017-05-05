@@ -12,5 +12,7 @@ module Ticolandscape
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.action_controller.permit_all_parameters = true
+    config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+	config.i18n.default_locale = :es
   end
 end

@@ -6,8 +6,8 @@ class User < ApplicationRecord
   	#Associations
 	belongs_to 	:role
 	has_one		:profile
-
-  	##################
-  	#validations
-  		
+  
+  ##################
+  #validations
+  accepts_nested_attributes_for :profile
 end
