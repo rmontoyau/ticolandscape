@@ -1,6 +1,4 @@
-$(document).ready(function(){
-
-
+//update date fromat
 	var update_final_date = function(){
 		var day = 1;
 		var month = $("#final_date_month").val();
@@ -15,6 +13,44 @@ $(document).ready(function(){
 		$("#experience_initial_date").val(day + '/' + month + '/' + year);
 
 	};
+
+	function form_methods(action, add = true){
+		if (add){
+			input = $("<input>").attr('id','experience_form_method').attr('name', '_method').attr('type', 'hidden').val(action);
+			$("#experience_form").prepend(input);
+		}
+		else {
+			$("#experience_form_method").remove();
+		}
+	}
+
+	var update_experience = function(id){
+		
+		$("#experience_modal").modal("show");
+		experience = experiences[id];
+		$("#experience_title").val(experience['title']);
+		$("#experience_summary").val(experience['summary']);
+		$("#experience_is_current").attr('checked', experience['summary']);
+		var month =  new Date(experience['initial_date']).getMonth() + 1;
+		var year =  new Date(experience['initial_date']).getFullYear();
+		$("#initial_date_month").val(month);
+		$("#initial_date_year").val(year);
+		var month =  new Date(experience['final_date']).getMonth() + 1;
+		var year =  new Date(experience['final_date']).getFullYear();
+		$("#final_date_month").val(month);
+		$("#final_date_year").val(year);
+		if (id != null) {
+			$("#experience_id").val(id);
+			$("#experience_form").attr("action" , "/experiences/" + id );
+			form_methods('patch', true);
+		} else {
+			$("#experience_form").attr("action" , "/experiences");
+			$("#experience_id").val(-1);
+			form_methods('patch', false);
+		}
+	};
+
+$(document).ready(function() {
 
 	//ACTIONS
 	//update current experience item

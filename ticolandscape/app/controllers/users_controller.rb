@@ -32,5 +32,6 @@ class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
     @experience = Experience.new({:profile_id => @user.profile.id})
+    #@experience = Experience.find(1)
   end
 end

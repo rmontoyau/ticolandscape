@@ -1,5 +1,5 @@
 <!-- Modal -->
-<%= simple_form_for experience, :html => {:id => 'form-inline'} do |f|%>
+<%= simple_form_for experience, :html => {:id => 'experience_form'} do |f|%>
 <div class="modal fade" id="experience_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -33,6 +33,7 @@
        <%= f.hidden_field :initial_date%> 
        <%= f.hidden_field :final_date%> 
        <%= f.hidden_field :profile_id%> 
+       <%= f.hidden_field :id%> 
       <div class="checkbox">
         <label>
           <%= f.input :is_current, :label => (t 'field.current_job')%>

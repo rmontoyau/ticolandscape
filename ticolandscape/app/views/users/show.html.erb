@@ -1,4 +1,6 @@
-
+<script type="text/javascript">
+var experiences = {}
+</script>
 <div class="row">
 	<div class="col-md-4 shadow-pannel no-padding  white-bg">
 		<%= image_tag('avatar', class: "img-responsive full-image")%>
@@ -87,8 +89,25 @@
 							<p>
 								<%=experience.summary%>
 							</p>
+							<div class="col-md-2 col-md-offset-10">
+								<button class="btn btn-link" onclick="update_experience(<%= experience.id%>)"><%= t'button.update'%></button>
+
+							</div>
 							<hr/>
+							<script type="text/javascript">
+
+								experiences[<%= experience.id %>] = {
+									id : "<%= experience.id%>", 
+									title :" <%= experience.title%>",
+									summary : "<%= experience.summary%>",
+									initial_date : "<%= experience.initial_date%>",
+									final_date : "<%= experience.final_date%>",
+									is_current : "<%= experience.is_current%>"
+								};
+							</script>	
+
 						</div>
+
 					<%end%>
 					
 				<%end%>
