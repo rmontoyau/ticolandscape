@@ -2,16 +2,16 @@
 <div class="row">
 	<div class="col-md-4 shadow-pannel no-padding  white-bg">
 		<%= image_tag('avatar', class: "img-responsive full-image")%>
-		<div class="avatar_name">Photogapher Name</div>
+		<div class="avatar_name"><%= @user.profile.name%> <%= @user.profile.last_name%></div>
 		<br/><br/>
 		<div class="row recover-padding">
 			<div class="col-md-12 ">
 				<span class="glyphicon glyphicon-briefcase green-icon"> 
-					<label>Designer</label>
+					<label><%= @user.profile.position%></label>
 				</span>
 				<br/><br/>
 				<span class="glyphicon glyphicon-home green-icon"> 
-					<label>Costa Rica</label>
+					<label><%= @user.profile.location.nil? ? (t 'message.error.no_data') : @user.profile.location.country%></label>
 				</span>
 				<br/><br/>
 				<span class="glyphicon glyphicon-envelope green-icon"> 
@@ -19,57 +19,82 @@
 				</span>
 				<br/><br/>
 				<span class="glyphicon glyphicon-phone green-icon"> 
-					<label> 555-55555 ext 555</label>
+					<label> <%= @user.profile.phones.empty? ? (t 'message.error.no_data') : @user.profile.phones.first.number%></label>
 				</span>
+				<div class="col-md-2 col-md-offset-8">
+					<button class="btn btn-link"><%= t'button.update'%></button>
+				</div>
 				<hr/>		
-				<h2 class="glyphicon glyphicon-check green-icon">
-					<label>Tools</label>
-				</h2>
+				<h3 class="glyphicon glyphicon-check green-icon">
+					<label><%= t 'message.tools'%></label>
+				</h3>
 				<ul class="list-group">
-					<li class="list-group-item"> Photoshop</li>
-					<li class="list-group-item"> Ilustrator</li>
-					<li class="list-group-item"> Photography</li>
+					<% if @user.profile.tools.empty?%>
+						<li class="list-group-item"> <%= (t 'message.error.no_data')%></li>
+					<% else %>											
+						<% @user.profile.tools.each do |tool| %>
+						<li class="list-group-item"> <%= tool.name%></li>
+						<% end %>	
+					<% end %>
 				</ul>
+				<div class="col-md-2 col-md-offset-8">
+					<button class="btn btn-link"><%= t'button.add_data'%></button>
+				</div>
 				<hr/>
-				<h2 class="glyphicon glyphicon-check green-icon">
-					<label>Social nets</label>
-				</h2>
+				<h3 class="glyphicon glyphicon-check green-icon">
+					<label><%= t 'message.social_nets'%></label>
+				</h3>
 				<ul class="list-group">
-					<li class="list-group-item"> Photoshop</li>
-					<li class="list-group-item"> Ilustrator</li>
-					<li class="list-group-item"> Photography</li>
+					<% if @user.profile.social_nets.empty?%>
+						<li class="list-group-item"> <%= (t 'message.error.no_data')%></li>
+					<% else %>											
+						<% @user.profile.social_nets.each do |social_net| %>
+						<li class="list-group-item"> <%= social_net.name%></li>
+						<% end %>	
+					<% end %>
 				</ul>
+				<div class="col-md-2 col-md-offset-8">
+					<button class="btn btn-link"><%= t'button.add_data'%></button>
+				</div>
 			</div>
 		</div>
 	</div>
 	<div class="col-md-8 ">
 		<div class="col-md-12 shadow-pannel  white-bg ">
 			<h1 class="glyphicon glyphicon-briefcase green-icon"> 
-				<label>Experience</label>
+				<label><%= (t 'message.experience')%></label>
 			</h1>
 			<div class="row">
+				<% if @user.profile.experiences.empty?%>
 				<div class="col-md-10 col-md-offset-1">
-					<h2>Freelancer photographer</h2>
-					<span class="glyphicon glyphicon-calendar green-icon">
-						<label>Jan 2016  - <label>
-						<button type="button" class="btn btn-square">Current</button>
-
-					</span>
-					<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam commodo in velit vel faucibus. Sed ac mi vitae nibh efficitur molestie. Curabitur vehicula nulla quis justo porttitor, a egestas purus ullamcorper. Nulla faucibus sem eros, eu vestibulum arcu sollicitudin vitae
-					</p>
-					<hr/>
-				</div>
-
-				<div class="col-md-10 col-md-offset-1 ">
-					<h2>Freelancer photographer</h2>
-					<span class="glyphicon glyphicon-calendar green-icon">
-						<label>Jan 2015  - Dec 2015<label>
-					</span>
-					<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam commodo in velit vel faucibus. Sed ac mi vitae nibh efficitur molestie. Curabitur vehicula nulla quis justo porttitor, a egestas purus ullamcorper. Nulla faucibus sem eros, eu vestibulum arcu sollicitudin vitae
-					</p>
-					<hr/>
+					<%=  (t 'message.error.no_data')%>		
+				</div>		
+				<%else%>
+					<% @user.profile.experiences.each do |experience|%>
+						<div class="col-md-10 col-md-offset-1">
+							<h2><%=experience.title%></h2>
+							<span class="glyphicon glyphicon-calendar green-icon">
+								<label>
+									<%= I18n.l(experience.initial_date, format: "%B") %> <%= I18n.l(experience.initial_date, format: "%Y") %> - 
+									<% if experience.is_current%>
+										<button type="button" class="btn btn-square">Current</button>
+									<%else%>	
+									<%= I18n.l(experience.final_date, format: "%B") %> <%= I18n.l(experience.final_date, format: "%Y") %>
+									<%end%>
+								</label>
+								
+							</span>
+							<p>
+								<%=experience.summary%>
+							</p>
+							<hr/>
+						</div>
+					<%end%>
+					
+				<%end%>
+				
+				<div class="col-md-2 col-md-offset-10">
+					<button class="btn btn-link" data-toggle="modal" data-target="#experience_modal"><%= t'button.add_data'%></button>
 				</div>
 
 			</div>
@@ -77,14 +102,18 @@
 		</div>
 		<div class="col-md-12  shadow-pannel  white-bg">
 			<h1 class="glyphicon glyphicon-info-sign green-icon">
-				<label>Aboutme</label>
+				<label><%= (t 'message.about_me')%></label>
 			</h1>
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam commodo in velit vel faucibus. Sed ac mi vitae nibh efficitur molestie. Curabitur vehicula nulla quis justo porttitor, a egestas purus ullamcorper. Nulla faucibus sem eros, eu vestibulum arcu sollicitudin vitae. In vitae nibh ac mi dignissim eleifend vel in risus. Ut mattis nibh vitae tincidunt malesuada. Quisque facilisis, arcu et bibendum elementum, turpis lorem tincidunt sem, id congue massa nibh ac urna. Proin vel ipsum sodales, ultricies dui a, laoreet elit. Nam sem enim, luctus sit amet laoreet nec, dignissim eget augue. Nam at sagittis ipsum, ac dapibus eros. Praesent semper sit amet metus et finibus. Etiam quis facilisis magna. Pellentesque dignissim eu sem ut posuere. Quisque rhoncus, metus id dignissim ornare, odio turpis ultrices tellus, at sodales orci quam mattis ipsum. 
+					<%= @user.profile.about_me.blank? ? (t 'message.error.no_data') : @user.profile.about_me%>					
+					</div>
+					<div class="col-md-2 col-md-offset-10">
+						<button class="btn btn-link"><%= t'button.add_data'%></button>
 					</div>
 				</div>
 			
 		</div>
 	</div>
 </div>
+<%= render :partial => "user_forms/experience", locals: {experience: @experience }%>

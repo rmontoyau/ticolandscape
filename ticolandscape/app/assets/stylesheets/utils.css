@@ -47,3 +47,6 @@ span.error {
 .field_with_errors{
 	border-color: red;
 }
+.center {
+	text-align: center;
+}

@@ -9,8 +9,45 @@ es:
     'male': Masculino
     'female': Femenino
     'dob': Fecha de nacimiento
+    'position': Puesto
+    'title': Titulo
+    'initial_date': Fecha inicial
+    'final_date': Fecha final
+    'current_job': Trabajo actual
+    'summary': Resumen
   button:
     'acept': Aceptar
     'cancel': Cancelar
     'reset': Reset
- 
+    'add_data': Agregar ...
+    'update': Actualizar...
+    'close': Cerrar
+  message:
+    create:
+      'user': Crear nuevo usuario
+    edit:
+      'user': Editar usuario
+    register:
+      'user': Registro de  usuario
+    error:
+      'no_data': Dato no proporcionado
+    tools: Herramientas
+    social_nets: Redes Sociales
+    experience: Experiencia
+    about_me: Acerca de mi
+    add_information: Agregar...
+    from: Desde
+    until: Hasta
+  months:
+    '1': Enero
+    '2': Febrero
+    '3': Marzo
+    '4': Abril
+    '5': Mayo
+    '6': Junio
+    '7': Julio
+    '8': Agosto
+    '9': Septiembre
+    '10': Octubre
+    '11': Noviembre
+    '12': Diciembre

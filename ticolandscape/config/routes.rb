@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 	
 
+
   	resources :home do
 		collection do
 			get :about
@@ -10,6 +11,16 @@ Rails.application.routes.draw do
 	end
 
 	resources :users do
+		collection do
+			get :index
+			get :new
+			post :create
+			get :edit
+			post :update
+			get :delete
+		end# collection
+	end
+	resources :experiences do
 		collection do
 			get :index
 			get :new

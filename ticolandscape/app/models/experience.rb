@@ -1,3 +1,9 @@
 class Experience < ApplicationRecord
-	has_one	:profile
+
+	##################
+	#Associations
+	belongs_to	:profile
+
+  	validates :title, :summary, :initial_date, presence: true
+	
 end

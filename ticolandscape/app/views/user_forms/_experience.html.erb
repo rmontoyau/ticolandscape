@@ -1,0 +1,54 @@
+<!-- Modal -->
+<%= simple_form_for experience, :html => {:id => 'form-inline'} do |f|%>
+<div class="modal fade" id="experience_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="experience_modal">Experiencia</h4>
+      </div>
+      <div class="modal-body">
+
+       
+         <div class="form-group">
+          <div class="input-group">
+              <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"/></div>
+            <%= f.input :title, :label => false, :input_html => {class: "form-control"}, :placeholder => "#{(t 'field.title')} "%>
+          </div>
+        </div>
+       
+        <div class="form-group">
+          <div class="input-group">
+              <div class="input-group-addon"><span class="glyphicon glyphicon-calendar"/></div>
+              <label><%= t 'message.from'%></label>
+               <%= select_year_month('initial_date_month')%>
+               <%= select_years('initial_date_year', Constants::YEAR_DEEP)%>
+               <label><%= t 'message.until'%></label>
+               <%= select_year_month("final_date_month")%>
+               <%= select_years('final_date_year', Constants::YEAR_DEEP)%>
+          </div>
+
+        </div>
+     
+       <%= f.hidden_field :initial_date%> 
+       <%= f.hidden_field :final_date%> 
+       <%= f.hidden_field :profile_id%> 
+      <div class="checkbox">
+        <label>
+          <%= f.input :is_current, :label => (t 'field.current_job')%>
+        </label>
+      </div>
+        <div class="form-group">
+            <%= f.input :summary, :label => false, :input_html => {class: "form-control"}, :placeholder => "#{(t 'field.summary')} "%>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t 'button.close'%></button>
+        <input type="submit" class="btn btn-primary" value ="<%= t 'button.acept'%>" >
+      </div>
+    </div>
+  </div>
+</div>
+<%end%>

@@ -12,10 +12,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    if @user.save
+    if @user.save!
     	redirect_to @user
    else
    	render :new
+    flass[:error] = "error"
    end 	
   end
 
@@ -30,5 +31,6 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
+    @experience = Experience.new({:profile_id => @user.profile.id})
   end
 end

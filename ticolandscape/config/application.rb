@@ -14,5 +14,6 @@ module Ticolandscape
     config.action_controller.permit_all_parameters = true
     config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
 	config.i18n.default_locale = :es
+	config.autoload_paths += %W( lib/ )
   end
 end

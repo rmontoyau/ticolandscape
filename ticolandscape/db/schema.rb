@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170503003322) do
+ActiveRecord::Schema.define(version: 20170505194300) do
 
   create_table "album_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "key"
@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 20170503003322) do
 
   create_table "experiences", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
-    t.datetime "initial_date"
-    t.datetime "final_date"
+    t.date     "initial_date"
+    t.date     "final_date"
     t.text     "summary",      limit: 65535
     t.boolean  "is_current",                 default: false
     t.integer  "profile_id"
@@ -77,6 +77,13 @@ ActiveRecord::Schema.define(version: 20170503003322) do
     t.datetime "updated_at",    null: false
   end
 
+  create_table "phones_profiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "profile_id"
+    t.integer "phone_id"
+    t.index ["phone_id"], name: "index_phones_profiles_on_phone_id", using: :btree
+    t.index ["profile_id"], name: "index_phones_profiles_on_profile_id", using: :btree
+  end
+
   create_table "photo_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "key"
     t.datetime "created_at", null: false
@@ -98,20 +105,14 @@ ActiveRecord::Schema.define(version: 20170503003322) do
     t.integer  "user_id"
     t.string   "name"
     t.string   "last_name"
-    t.datetime "dob"
+    t.string   "position"
+    t.date     "dob"
     t.text     "about_me",    limit: 65535
     t.string   "sex"
     t.integer  "photo_id"
     t.integer  "location_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-  end
-
-  create_table "profiles_phones", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "profile_id"
-    t.integer "phone_id"
-    t.index ["phone_id"], name: "index_profiles_phones_on_phone_id", using: :btree
-    t.index ["profile_id"], name: "index_profiles_phones_on_profile_id", using: :btree
   end
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
