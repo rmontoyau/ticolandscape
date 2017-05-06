@@ -24,4 +24,11 @@ class ExperiencesController < ApplicationController
 
   def show
   end
+
+  def delete
+    @experience = Experience.find(params[:format])
+    @user = @experience.profile.user
+    @experience.destroy
+    redirect_to @user
+  end
 end

@@ -87,30 +87,31 @@ var experiences = {}
 								
 							</span>
 							<p>
-								<%=experience.summary%>
+								<%=experience.summary.html_safe%>
 							</p>
-							<div class="col-md-2 col-md-offset-10">
-								<button class="btn btn-link" onclick="update_experience(<%= experience.id%>)"><%= t'button.update'%></button>
-
+							<div class="col-md-6 col-md-offset-7">
+							 	<a class="btn btn-link" href="<%= delete_experiences_path(experience.id)%>"><%= t'button.delete'%></a>
+								<a class="btn btn-link" onclick="update_experience(<%= experience.id%>)"><%= t'button.update'%></a>
+								
 							</div>
-							<hr/>
+							<hr>
+							
+
+						</div>
 							<script type="text/javascript">
 
 								experiences[<%= experience.id %>] = {
 									id : "<%= experience.id%>", 
 									title :" <%= experience.title%>",
-									summary : "<%= experience.summary%>",
+									summary : "<%= experience.summary.html_safe%>",
 									initial_date : "<%= experience.initial_date%>",
 									final_date : "<%= experience.final_date%>",
 									is_current : "<%= experience.is_current%>"
 								};
 							</script>	
-
-						</div>
-
-					<%end%>
+					<%end #experiences%>
 					
-				<%end%>
+				<%end #if%>
 				
 				<div class="col-md-2 col-md-offset-10">
 					<button class="btn btn-link" data-toggle="modal" data-target="#experience_modal"><%= t'button.add_data'%></button>

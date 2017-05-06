@@ -22,6 +22,7 @@ es:
     'add_data': Agregar ...
     'update': Actualizar...
     'close': Cerrar
+    'delete': Eliminar
   message:
     create:
       'user': Crear nuevo usuario

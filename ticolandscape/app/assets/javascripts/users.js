@@ -25,11 +25,12 @@
 	}
 
 	var update_experience = function(id){
-		
+
 		$("#experience_modal").modal("show");
 		experience = experiences[id];
 		$("#experience_title").val(experience['title']);
 		$("#experience_summary").val(experience['summary']);
+		tinymce.editors[0].setContent(experience["summary"])
 		$("#experience_is_current").attr('checked', experience['summary']);
 		var month =  new Date(experience['initial_date']).getMonth() + 1;
 		var year =  new Date(experience['initial_date']).getFullYear();
