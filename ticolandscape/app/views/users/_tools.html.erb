@@ -1,0 +1,31 @@
+<h3 class="glyphicon glyphicon-check green-icon">
+	<label><%= t 'message.tools'%></label>
+</h3>
+<ul class="list-group">
+	<% if profile.tools.empty?%>
+		<li class="list-group-item"> <%= (t 'message.error.no_data')%></li>
+	<% else %>											
+		<% profile.tools.each do |tool| %>
+			<li class="list-group-item"> 
+				<div class="row">
+					<div class="col-md-12">
+						<%= tool.name%>
+						<div class="progress">
+						  <div class="progress-bar" role="progressbar" aria-valuenow="<%= tool.percent%>" aria-valuemin="0" aria-valuemax="100" style="width: <%= tool.percent%>%;">
+						    <%= tool.percent%> %
+						  </div>
+						</div>	
+						<div class="col-md-10 col-md-offset-2">
+						 	<a class="btn btn-link" onclick="delete_item(msg_delete_tool ,msg_sure,'<%= delete_tools_path(tool.id)%>')" > <%= t'button.delete'%></a>
+						 	<button class="btn btn-link" onclick="update_tool(<%=tool.id%>)"><%= t'button.update'%></button>								
+						</div>	
+					</div>		
+				</div>		
+			</li>
+		<% end #tool%>	
+	<% end %>
+</ul>
+<div class="col-md-2 col-md-offset-8">
+	<button class="btn btn-link" onclick="add_new_tool(<%=profile.id%>)"><%= t'button.add_data'%></button>
+</div>
+<hr/>

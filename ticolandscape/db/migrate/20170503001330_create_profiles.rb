@@ -10,6 +10,7 @@ class CreateProfiles < ActiveRecord::Migration[5.0]
       t.string		:sex
       t.integer		:photo_id      
       t.integer		:location_id
+      t.integer   :phone
       t.timestamps
     end
   end

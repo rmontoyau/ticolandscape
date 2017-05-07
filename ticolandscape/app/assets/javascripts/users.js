@@ -23,7 +23,7 @@
 			$("#experience_form_method").remove();
 		}
 	}
-
+	//upda he user experiences
 	var update_experience = function(id){
 
 		$("#experience_modal").modal("show");
@@ -50,6 +50,31 @@
 			form_methods('patch', false);
 		}
 	};
+	//delete and experiences
+	var delete_item = function(title, question, url){
+
+		confirmation_dialog(title, question, function() {
+			location.href = url;
+		}, null,null)
+	}
+	//addphone
+	var add_phone = function(container, phone_url)
+	{
+		html = $("#"+container).html()
+		$("#"+container).load(phone_url)
+	}
+
+	//add_new_tool
+	var add_new_tool = function(profile_id){
+		$("#tools_modal_body").load("/tools/new?id=" + profile_id)
+		$("#tools_modal").modal('show');
+	}
+
+	//add_new_tool
+	var update_tool = function(id){
+		$("#tools_modal_body").load("/tools/" + id + "/edit")
+		$("#tools_modal").modal('show');
+	}
 
 $(document).ready(function() {
 

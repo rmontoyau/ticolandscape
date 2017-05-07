@@ -1,0 +1,28 @@
+<!-- Modal -->
+<%= simple_form_for profile, :html => {:id => 'about_me_form'} do |f|%>
+<div class="modal fade" id="about_me_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="about_me_modal"><%= (t 'message.about_me')%></h4>
+      </div>
+      <%= tinymce_assets %>
+      <div class="modal-body">
+
+ 
+        <div class="form-group">
+            <%= tinymce %>
+            <%= f.input :about_me, :label => false, :input_html => {class: "tinymce ", :rows => 20, :cols => 70}, :placeholder => "#{(t 'field.about_me')} "%>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t 'button.close'%></button>
+        <input type="submit" class="btn btn-primary" value ="<%= t 'button.acept'%>" >
+      </div>
+    </div>
+  </div>
+</div>
+<%end%>

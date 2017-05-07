@@ -5,9 +5,9 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
-    #@user.profile = Profile.new
+    @user = User.new    
     @user.build_profile
+
   end
 
   def create
@@ -31,6 +31,13 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
+    if @user.profile.location.nil?
+      @user.profile.build_location
+    end
+    if @user.profile.phone.nil?
+      @user.profile.build_phone
+    end
     @experience = Experience.new({:profile_id => @user.profile.id})
+    @tool = Tool.new({:profile_id => @user.profile.id})
   end
 end

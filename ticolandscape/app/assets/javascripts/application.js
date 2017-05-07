@@ -17,3 +17,4 @@
 //= require bootstrap-sprockets
 //= require utils.js
 //= require users.js
+//= require display_dialogs.js

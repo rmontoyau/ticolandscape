@@ -1,0 +1,23 @@
+<%= simple_form_for tool, :html => {:id => 'tool_form'} do |f|%>
+<div class="modal-body">
+	<div class="form-group">
+        <div class="input-group">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-wrench"/></div>
+            <%= f.input :name, :label => false, :input_html => {class: 'form-control'}, :placeholder => (t 'field.name'), :maxlength => 50 %>
+        </div>
+    </div>
+	<div class="form-group">
+		<label><%=(t 'field.percentage')%></label>
+		<div class="input-group">
+		    <div class="input-group-addon">%</div>
+		  <%= f.input :percent, :label => false, :input_html => {class: 'form-control'}, :placeholder => (t 'field.percentage'), :maxlength => 50 %>
+		</div>
+	</div>
+       <%= f.hidden_field :profile_id%> 
+       <%= f.hidden_field :id%> 
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" data-dismiss="modal"><%= t 'button.close'%></button>
+	<input type="submit" class="btn btn-primary" value ="<%= t 'button.acept'%>" >
+</div>
+<%end%>

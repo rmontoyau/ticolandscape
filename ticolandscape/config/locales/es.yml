@@ -15,6 +15,15 @@ es:
     'final_date': Fecha final
     'current_job': Trabajo actual
     'summary': Resumen
+    'about_me': Acerca de mi    
+    'country': País
+    'state': Provincia
+    'department': Canton
+    'city': Ciudad
+    'phone_number': Número telefonico
+    'ext': ext
+    'type': type
+    'percentage': Porcentage de conocimiento
   button:
     'acept': Aceptar
     'cancel': Cancelar
@@ -32,13 +41,20 @@ es:
       'user': Registro de  usuario
     error:
       'no_data': Dato no proporcionado
+    delete:
+      'experience': Eliminar experiencia
+      'tool': Eliminar herramienta
+      'no_recover_data': Si elimina este item, no podrá recobrarlo \n ¿Está seguro que desea eliminarlo?
     tools: Herramientas
     social_nets: Redes Sociales
     experience: Experiencia
+    profile: Perfil
     about_me: Acerca de mi
     add_information: Agregar...
     from: Desde
     until: Hasta
+    location: 'Ubicación'    
+
   months:
     '1': Enero
     '2': Febrero

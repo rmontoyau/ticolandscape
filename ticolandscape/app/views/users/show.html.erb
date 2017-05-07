@@ -1,6 +1,11 @@
+
 <script type="text/javascript">
-var experiences = {}
+	var experiences = {};
+	var msg_delete_expericence = "<%= (t 'message.delete.experience')%>";
+	var msg_sure = "<%= (t 'message.delete.no_recover_data')%>";
+	var msg_delete_tool = "<%= (t 'message.delete.tool')%>";
 </script>
+
 <div class="row">
 	<div class="col-md-4 shadow-pannel no-padding  white-bg">
 		<%= image_tag('avatar', class: "img-responsive full-image")%>
@@ -13,7 +18,7 @@ var experiences = {}
 				</span>
 				<br/><br/>
 				<span class="glyphicon glyphicon-home green-icon"> 
-					<label><%= @user.profile.location.nil? ? (t 'message.error.no_data') : @user.profile.location.country%></label>
+					<label><%= @user.profile.location.nil? ? (t 'message.error.no_data') : @user.profile.location.full_address%></label>
 				</span>
 				<br/><br/>
 				<span class="glyphicon glyphicon-envelope green-icon"> 
@@ -21,28 +26,15 @@ var experiences = {}
 				</span>
 				<br/><br/>
 				<span class="glyphicon glyphicon-phone green-icon"> 
-					<label> <%= @user.profile.phones.empty? ? (t 'message.error.no_data') : @user.profile.phones.first.number%></label>
+					<label> <%= @user.profile.phone.nil? ? (t 'message.error.no_data') : @user.profile.phone.number%></label>
 				</span>
 				<div class="col-md-2 col-md-offset-8">
-					<button class="btn btn-link"><%= t'button.update'%></button>
+					<button class="btn btn-link" data-toggle="modal" data-target="#profile_modal"><%= t'button.update'%></button>
 				</div>
 				<hr/>		
-				<h3 class="glyphicon glyphicon-check green-icon">
-					<label><%= t 'message.tools'%></label>
-				</h3>
-				<ul class="list-group">
-					<% if @user.profile.tools.empty?%>
-						<li class="list-group-item"> <%= (t 'message.error.no_data')%></li>
-					<% else %>											
-						<% @user.profile.tools.each do |tool| %>
-						<li class="list-group-item"> <%= tool.name%></li>
-						<% end %>	
-					<% end %>
-				</ul>
-				<div class="col-md-2 col-md-offset-8">
-					<button class="btn btn-link"><%= t'button.add_data'%></button>
-				</div>
-				<hr/>
+				<!-- Tools-->
+				<%=render :partial => "users/tools", :locals=>{profile: @user.profile } %>
+				<!-- social nets-->
 				<h3 class="glyphicon glyphicon-check green-icon">
 					<label><%= t 'message.social_nets'%></label>
 				</h3>
@@ -56,7 +48,7 @@ var experiences = {}
 					<% end %>
 				</ul>
 				<div class="col-md-2 col-md-offset-8">
-					<button class="btn btn-link"><%= t'button.add_data'%></button>
+					<button class="btn btn-link" ><%= t'button.add_data'%></button>
 				</div>
 			</div>
 		</div>
@@ -90,7 +82,7 @@ var experiences = {}
 								<%=experience.summary.html_safe%>
 							</p>
 							<div class="col-md-6 col-md-offset-7">
-							 	<a class="btn btn-link" href="<%= delete_experiences_path(experience.id)%>"><%= t'button.delete'%></a>
+							 	<a class="btn btn-link" onclick="delete_item(msg_delete_expericence ,msg_sure, '<%= delete_experiences_path(experience.id)%>')" ><%= t'button.delete'%></a>
 								<a class="btn btn-link" onclick="update_experience(<%= experience.id%>)"><%= t'button.update'%></a>
 								
 							</div>
@@ -124,16 +116,20 @@ var experiences = {}
 			<h1 class="glyphicon glyphicon-info-sign green-icon">
 				<label><%= (t 'message.about_me')%></label>
 			</h1>
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
-					<%= @user.profile.about_me.blank? ? (t 'message.error.no_data') : @user.profile.about_me%>					
-					</div>
-					<div class="col-md-2 col-md-offset-10">
-						<button class="btn btn-link"><%= t'button.add_data'%></button>
-					</div>
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+				<%= @user.profile.about_me.blank? ? (t 'message.error.no_data') : @user.profile.about_me.html_safe%>					
 				</div>
+				<div class="col-md-2 col-md-offset-10">
+					<button class="btn btn-link" data-toggle="modal" data-target="#about_me_modal"><%= t'button.update'%></button>
+				</div>
+			</div>
 			
 		</div>
 	</div>
 </div>
+<%= tinymce_assets %>
 <%= render :partial => "user_forms/experience", locals: {experience: @experience }%>
+<%= render :partial => "user_forms/about_me", locals: {profile: @user.profile }%>
+<%= render :partial => "user_forms/profile", locals: {profile: @user.profile }%>
+<%= render :partial => "user_forms/tools_dialog", locals: {tool: @tool }%>

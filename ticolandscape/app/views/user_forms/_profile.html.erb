@@ -1,0 +1,75 @@
+<!-- Modal -->
+<%= simple_form_for profile, :html => {:id => 'profile_form'} do |f|%>
+<div class="modal fade" id="profile_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="profile_modal"><%= (t 'message.profile')%></h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="form-group">
+          <div class="input-group">
+              <div class="input-group-addon"><span class="glyphicon glyphicon-user"/></div>
+            <%= f.input :name, :label => false, :input_html => {class: "form-control"}, :placeholder => "#{(t 'field.name')} "%>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+              <div class="input-group-addon"><span class="glyphicon glyphicon-user"/></div>
+            <%= f.input :last_name, :label => false, :input_html => {class: "form-control"}, :placeholder => "#{(t 'field.last_name')} "%>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+              <div class="input-group-addon"><span class="glyphicon glyphicon-camera"/></div>
+            <%= f.input :position, :label => false, :input_html => {class: "form-control"},:placeholder => "#{(t 'field.position')}"%>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+              <div class="input-group-addon"><span class="glyphicon glyphicon-calendar"/></div>
+            <%= f.input :dob, :label => false, :input_html => {class: "form-control"}, :placeholder => "#{(t 'field.dob')}"%>
+          </div>
+        </div>
+         <%= f.fields_for :phone do |phone_builder| %>
+            <div class="form-group">
+              <div class="input-group">
+                  <div class="input-group-addon"><span class="glyphicon glyphicon-phone"/></div>
+                <%= phone_builder.input :number, :label => false, :input_html => {class: "form-control"}, :placeholder => "#{(t 'field.phone_number')}"%>
+              </div>
+            </div>
+         <%end%>
+
+       <fieldset>
+         <legend><%=(t 'message.location')%></legend>
+       
+        <%= f.fields_for :location do |builder| %>
+           <div class="form-group">
+              <%= builder.input :country, :label =>  false, :input_html => {class: "form-control"},:placeholder => "#{(t 'field.country')}"%>
+           </div>
+           <div class="form-group">
+              <%= builder.input :state, :label => false, :input_html => {class: "form-control"},:placeholder => "#{(t 'field.country')}"%>
+           </div>
+           <div class="form-group">
+              <%= builder.input :department, :label => false, :input_html => {class: "form-control"},:placeholder => "#{(t 'field.department')}"%>              
+           </div>
+           
+            <div class="form-group">
+              <%= builder.input :city, :label => false, :input_html => {class: "form-control"},:placeholder => "#{(t 'field.city')}"%>              
+           </div>
+        <%end #builder%>
+        </fieldset>
+        
+        
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t 'button.close'%></button>
+        <input type="submit" class="btn btn-primary" value ="<%= t 'button.acept'%>" >
+      </div>
+    </div>
+  </div>
+</div>
+<%end #form%>
